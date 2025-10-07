@@ -1,3 +1,12 @@
+// main.js
+
+// Seu número de WhatsApp (código do país + DDD + número)
+// +55 54 99930-0593
+const MY_WHATSAPP = '5554999300593';
+
+// Link do Instagram da loja
+const INSTAGRAM_URL = 'https://www.instagram.com/ufo_store_rs?igsh=MWJlbnk2NG5vbTFuMg==';
+
 const produtosPronta = [
   {
     nome: 'Arsenal',
@@ -48,7 +57,7 @@ const produtosPronta = [
     nome: 'Barcelona',
     descricao: 'Edição Especial 24/25',
     tamanhos:  'G',
-    imagem: 'img/barcelona edição especial.jpeg',
+    imagem: 'img/barcelona-edicao-especial.jpeg',
     categoria: 'pronta',
     pais: 'europa',
     whatsapp: 'Barcelona Edição Especial'
@@ -104,14 +113,18 @@ const produtosVendidos = [
 ];
 
 function criarProdutoCard(produto) {
-  const badge = produto.categoria === 'pronta' ? 
-    '<span class="badge badge-pronta">✓ Pronta Entrega</span>' :
-    '<span class="badge badge-vendido">🔥 Mais Vendido</span>';
+  const badge = produto.categoria === 'pronta'
+    ? '<span class="badge badge-pronta">✓ Pronta Entrega</span>'
+    : '<span class="badge badge-vendido">🔥 Mais Vendido</span>';
 
-  const whatsappLink = `https://wa.me/5554999999999?text=Olá!%20Tenho%20interesse%20na%20camisa%20do%20${encodeURIComponent(produto.whatsapp)}`;
+  const msg = `Olá! Tenho interesse na camisa do ${produto.whatsapp}`;
+  const whatsappLink = `https://wa.me/${MY_WHATSAPP}?text=${encodeURIComponent(msg)}`;
 
   return `
-    <div class="produto-card" data-nome="${produto.nome.toLowerCase()}" data-categoria="${produto.categoria}" data-pais="${produto.pais}">
+    <div class="produto-card"
+         data-nome="${produto.nome.toLowerCase()}"
+         data-categoria="${produto.categoria}"
+         data-pais="${produto.pais}">
       <div class="produto-imagem">
         ${badge}
         <img src="${produto.imagem}" alt="${produto.nome}" loading="lazy">
@@ -121,8 +134,17 @@ function criarProdutoCard(produto) {
         <p class="produto-descricao">${produto.descricao}</p>
         <p class="produto-tamanhos">📏 ${produto.tamanhos}</p>
         <div class="produto-footer">
-          <a href="${whatsappLink}" class="btn-whatsapp" target="_blank">
+          <a href="${whatsappLink}"
+             class="btn-whatsapp"
+             target="_blank"
+             rel="noopener">
             💬 Pedir
+          </a>
+          <a href="${INSTAGRAM_URL}"
+             class="btn-instagram"
+             target="_blank"
+             rel="noopener">
+            📸 Instagram
           </a>
         </div>
       </div>
@@ -134,13 +156,13 @@ function renderizarProdutos() {
   const wrapperPronta = document.getElementById('wrapperPronta');
   const wrapperVendidos = document.getElementById('wrapperVendidos');
 
-  wrapperPronta.innerHTML = produtosPronta.map(p => 
-    `<div class="swiper-slide">${criarProdutoCard(p)}</div>`
-  ).join('');
+  wrapperPronta.innerHTML = produtosPronta
+    .map(p => `<div class="swiper-slide">${criarProdutoCard(p)}</div>`)
+    .join('');
 
-  wrapperVendidos.innerHTML = produtosVendidos.map(p => 
-    `<div class="swiper-slide">${criarProdutoCard(p)}</div>`
-  ).join('');
+  wrapperVendidos.innerHTML = produtosVendidos
+    .map(p => `<div class="swiper-slide">${criarProdutoCard(p)}</div>`)
+    .join('');
 }
 
 renderizarProdutos();
@@ -151,44 +173,41 @@ const swiperConfig = {
   spaceBetween: 20,
   pagination: {
     el: '.swiper-pagination',
-    clickable: true,
+    clickable: true
   },
   navigation: {
     prevEl: '.swiper-button-prev',
-    nextEl: '.swiper-button-next',
+    nextEl: '.swiper-button-next'
   },
   breakpoints: {
     480: { slidesPerView: 2, spaceBetween: 20 },
     768: { slidesPerView: 3, spaceBetween: 25 },
-    1024: { slidesPerView: 4, spaceBetween: 30 }
+    1024:{ slidesPerView: 4, spaceBetween: 30 }
   }
 };
 
-const swiperPronta = new Swiper('.swiper-pronta', swiperConfig);
+const swiperPronta  = new Swiper('.swiper-pronta', swiperConfig);
 const swiperVendidos = new Swiper('.swiper-vendidos', swiperConfig);
 
-const inputBusca = document.getElementById('busca');
+const inputBusca      = document.getElementById('busca');
 const filtroCategoria = document.getElementById('filtroCategoria');
-const filtroPais = document.getElementById('filtroPais');
+const filtroPais      = document.getElementById('filtroPais');
 
 function filtrarProdutos() {
-  const termoBusca = inputBusca.value.toLowerCase();
+  const termoBusca      = inputBusca.value.toLowerCase();
   const categoriaFiltro = filtroCategoria.value;
-  const paisFiltro = filtroPais.value;
-
-  const todosProdutos = document.querySelectorAll('.produto-card');
-  let contadorPronta = 0;
-  let contadorVendidos = 0;
+  const paisFiltro      = filtroPais.value;
+  const todosProdutos   = document.querySelectorAll('.produto-card');
+  let contadorPronta    = 0;
+  let contadorVendidos  = 0;
 
   todosProdutos.forEach(card => {
-    const nome = card.dataset.nome;
+    const nome      = card.dataset.nome;
     const categoria = card.dataset.categoria;
-    const pais = card.dataset.pais;
-
-    const matchBusca = nome.includes(termoBusca);
+    const pais      = card.dataset.pais;
+    const matchBusca     = nome.includes(termoBusca);
     const matchCategoria = categoriaFiltro === 'todos' || categoria === categoriaFiltro;
-    const matchPais = paisFiltro === 'todos' || pais === paisFiltro;
-
+    const matchPais      = paisFiltro === 'todos' || pais === paisFiltro;
     const slide = card.closest('.swiper-slide');
 
     if (matchBusca && matchCategoria && matchPais) {
@@ -200,10 +219,15 @@ function filtrarProdutos() {
     }
   });
 
-  document.getElementById('secaoPronta').style.display = 
-    (categoriaFiltro === 'todos' || categoriaFiltro === 'pronta') && contadorPronta > 0 ? 'block' : 'none';
-  document.getElementById('secaoVendidos').style.display = 
-    (categoriaFiltro === 'todos' || categoriaFiltro === 'vendido') && contadorVendidos > 0 ? 'block' : 'none';
+  document.getElementById('secaoPronta').style.display =
+    (categoriaFiltro === 'todos' || categoriaFiltro === 'pronta') && contadorPronta > 0
+      ? 'block'
+      : 'none';
+
+  document.getElementById('secaoVendidos').style.display =
+    (categoriaFiltro === 'todos' || categoriaFiltro === 'vendido') && contadorVendidos > 0
+      ? 'block'
+      : 'none';
 
   swiperPronta.update();
   swiperVendidos.update();
