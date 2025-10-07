@@ -13,23 +13,25 @@
   <header class="cabecalho">
     <h1>🛸 UFO STORE 👽</h1>
     <p>Lagoa Vermelha/RS</p>
-    <a class="instagram-pagina" href="https://instagram.com/Ufo Store & Sports" target="_blank">
+    <a class="instagram-pagina"
+       href="https://www.instagram.com/ufo_store_rs?igsh=MWJlbnk2NG5vbTFuMg=="
+       target="_blank">
       📱 Siga no Instagram
     </a>
   </header>
 
   <div class="filtros-container">
     <div class="busca-filtros">
-      <input 
-        type="text" 
-        class="busca-input" 
-        id="busca" 
+      <input
+        type="text"
+        class="busca-input"
+        id="busca"
         placeholder="🔍 Buscar time, país ou liga..."
       >
       <select class="filtro-select" id="filtroCategoria">
         <option value="todos">Todas as Categorias</option>
-        <option value="pronta">A Pronta Entrega</option>
-        <option value="vendido">Mais Procuradas</option>
+        <option value="pronta">Pronta Entrega</option>
+        <option value="procurada">Mais Procuradas</option>
       </select>
       <select class="filtro-select" id="filtroPais">
         <option value="todos">Todos os Países</option>
@@ -40,7 +42,7 @@
   </div>
 
   <section class="carrossel-section" id="secaoPronta">
-    <h2>✓ A PRONTA ENTREGA</h2>
+    <h2>✓ PRONTA ENTREGA</h2>
     <div class="swiper swiper-pronta">
       <div class="swiper-wrapper" id="wrapperPronta"></div>
       <div class="swiper-pagination"></div>
@@ -49,18 +51,22 @@
     </div>
   </section>
 
-  <section class="carrossel-section" id="secaoVendidos">
+  <section class="carrossel-section" id="secaoProcuradas">
     <h2>🔥 MAIS PROCURADAS</h2>
-    <div class="swiper swiper-vendidos">
-      <div class="swiper-wrapper" id="wrapperVendidos"></div>
+    <div class="swiper swiper-procuradas">
+      <div class="swiper-wrapper" id="wrapperProcuradas"></div>
       <div class="swiper-pagination"></div>
       <div class="swiper-button-prev"></div>
       <div class="swiper-button-next"></div>
     </div>
   </section>
+    <!-- Lightbox Overlay -->
+  <div id="lightbox" class="lightbox">
+    <img src="" alt="Zoom" />
+  </div>
+
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
   <script src="script.js"></script>
-
 </body>
 </html>

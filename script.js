@@ -10,16 +10,16 @@ const INSTAGRAM_URL = 'https://www.instagram.com/ufo_store_rs?igsh=MWJlbnk2NG5vb
 const produtosPronta = [
   {
     nome: 'Arsenal',
-    descricao: 'Camisa Home 24/25',
+    descricao: 'Arsenal Reserva 25-26',
     tamanhos:  'G',
-    imagem: 'img/Arsenal.jpg',
+    imagem: 'img/arsenal.jpg',
     categoria: 'pronta',
     pais: 'europa',
     whatsapp: 'Arsenal'
   },
   {
     nome: 'Juventus',
-    descricao: 'Camisa Home 24/25',
+    descricao: 'Juventus Third 25-26',
     tamanhos:  'G',
     imagem: 'img/juventus.jpg',
     categoria: 'pronta',
@@ -28,7 +28,7 @@ const produtosPronta = [
   },
   {
     nome: 'Grêmio',
-    descricao: 'Camisa Home 24/25',
+    descricao: 'Grêmio Titular 25-26',
     tamanhos:  'G',
     imagem: 'img/gremio.jpg',
     categoria: 'pronta',
@@ -37,7 +37,7 @@ const produtosPronta = [
   },
   {
     nome: 'Internacional',
-    descricao: 'Camisa Home 24/25',
+    descricao: 'Internacional Titular 25-26',
     tamanhos:  'G',
     imagem: 'img/internacional.jpg',
     categoria: 'pronta',
@@ -46,7 +46,7 @@ const produtosPronta = [
   },
   {
     nome: 'PSG',
-    descricao: 'Camisa Home 24/25',
+    descricao: 'PSG Fourth 24-25',
     tamanhos:  'G',
     imagem: 'img/psg.jpg',
     categoria: 'pronta',
@@ -55,67 +55,81 @@ const produtosPronta = [
   },
   {
     nome: 'Barcelona',
-    descricao: 'Edição Especial 24/25',
+    descricao: 'Barcelona Edição Especial 25-26',
     tamanhos:  'G',
-    imagem: 'img/barcelona-edicao-especial.jpeg',
+    imagem: 'img/barcelona edição especial.jpeg',
     categoria: 'pronta',
     pais: 'europa',
     whatsapp: 'Barcelona Edição Especial'
   }
 ];
 
-const produtosVendidos = [
+const produtosProcuradas = [
   {
     nome: 'Barcelona',
-    descricao: 'Camisa Home 24/25',
+    descricao: 'Barcelona Titular 25-26',
     tamanhos: 'P, M, G, GG',
     imagem: 'img/barcelona.jpeg',
-    categoria: 'vendido',
+    categoria: 'procurada',
     pais: 'europa',
     whatsapp: 'Barcelona'
   },
   {
     nome: 'Manchester City',
-    descricao: 'Camisa Home 24/25',
+    descricao: 'Manchester City Reserva 25-26',
     tamanhos: 'P, M, G, GG',
     imagem: 'img/city.jpeg',
-    categoria: 'vendido',
+    categoria: 'procurada',
     pais: 'europa',
     whatsapp: 'Manchester City'
   },
   {
     nome: 'Real Madrid',
-    descricao: 'Camisa Home 24/25',
+    descricao: 'Real Madrid Titular 25-26',
     tamanhos: 'P, M, G, GG',
     imagem: 'img/Real madrid.jpg',
-    categoria: 'vendido',
+    categoria: 'procurada',
     pais: 'europa',
     whatsapp: 'Real Madrid'
   },
   {
     nome: 'Palmeiras',
-    descricao: 'Camisa Home 24/25',
+    descricao: 'Palmeiras Titular 25-26',
     tamanhos: 'P, M, G, GG',
     imagem: 'img/palmeiras.jpg',
-    categoria: 'vendido',
+    categoria: 'procurada',
     pais: 'brasil',
     whatsapp: 'Palmeiras'
   },
   {
     nome: 'Botafogo',
-    descricao: 'Camisa Home 24/25',
+    descricao: 'Botafogo Titular 25-26',
     tamanhos: 'P, M, G, GG',
     imagem: 'img/botafogo.jpeg',
-    categoria: 'vendido',
+    categoria: 'procurada',
     pais: 'brasil',
     whatsapp: 'Botafogo'
+  },
+  {
+    nome: 'Liverpool',
+    descricao: 'Liverpool Titular 25-26',
+    tamanhos: 'P, M, G, GG',
+    imagem: 'img/liverpool.jpg',
+    categoria: 'procurada',
+    pais: 'europa',
+    whatsapp: 'Liverpool'
   }
 ];
 
 function criarProdutoCard(produto) {
-  const badge = produto.categoria === 'pronta'
-    ? '<span class="badge badge-pronta">✓ Pronta Entrega</span>'
-    : '<span class="badge badge-vendido">🔥 Mais Vendido</span>';
+  let badge;
+  if (produto.categoria === 'pronta') {
+    badge = '<span class="badge badge-pronta">✓ Pronta Entrega</span>';
+  } else if (produto.categoria === 'procurada') {
+    badge = '<span class="badge badge-procurada">🔥 Mais Procuradas</span>';
+  } else {
+    badge = '';
+  }
 
   const msg = `Olá! Tenho interesse na camisa do ${produto.whatsapp}`;
   const whatsappLink = `https://wa.me/${MY_WHATSAPP}?text=${encodeURIComponent(msg)}`;
@@ -125,9 +139,12 @@ function criarProdutoCard(produto) {
          data-nome="${produto.nome.toLowerCase()}"
          data-categoria="${produto.categoria}"
          data-pais="${produto.pais}">
-      <div class="produto-imagem">
+      <div class="produto-imagem" onclick="abrirLightbox('${produto.imagem}')">
         ${badge}
-        <img src="${produto.imagem}" alt="${produto.nome}" loading="lazy">
+        <img src="${produto.imagem}"
+             alt="${produto.nome}"
+             loading="lazy">
+        <div class="zoom-icon">🔍</div>
       </div>
       <div class="produto-info">
         <h3 class="produto-nome">${produto.nome}</h3>
@@ -140,12 +157,7 @@ function criarProdutoCard(produto) {
              rel="noopener">
             💬 Pedir
           </a>
-          <a href="${INSTAGRAM_URL}"
-             class="btn-instagram"
-             target="_blank"
-             rel="noopener">
-            📸 Instagram
-          </a>
+          
         </div>
       </div>
     </div>
@@ -153,14 +165,14 @@ function criarProdutoCard(produto) {
 }
 
 function renderizarProdutos() {
-  const wrapperPronta = document.getElementById('wrapperPronta');
-  const wrapperVendidos = document.getElementById('wrapperVendidos');
+  const wrapperPronta    = document.getElementById('wrapperPronta');
+  const wrapperProcuradas = document.getElementById('wrapperProcuradas');
 
   wrapperPronta.innerHTML = produtosPronta
     .map(p => `<div class="swiper-slide">${criarProdutoCard(p)}</div>`)
     .join('');
 
-  wrapperVendidos.innerHTML = produtosVendidos
+  wrapperProcuradas.innerHTML = produtosProcuradas
     .map(p => `<div class="swiper-slide">${criarProdutoCard(p)}</div>`)
     .join('');
 }
@@ -186,12 +198,12 @@ const swiperConfig = {
   }
 };
 
-const swiperPronta  = new Swiper('.swiper-pronta', swiperConfig);
-const swiperVendidos = new Swiper('.swiper-vendidos', swiperConfig);
+const swiperPronta     = new Swiper('.swiper-pronta', swiperConfig);
+const swiperProcuradas = new Swiper('.swiper-procuradas', swiperConfig);
 
-const inputBusca      = document.getElementById('busca');
-const filtroCategoria = document.getElementById('filtroCategoria');
-const filtroPais      = document.getElementById('filtroPais');
+const inputBusca       = document.getElementById('busca');
+const filtroCategoria  = document.getElementById('filtroCategoria');
+const filtroPais       = document.getElementById('filtroPais');
 
 function filtrarProdutos() {
   const termoBusca      = inputBusca.value.toLowerCase();
@@ -199,7 +211,7 @@ function filtrarProdutos() {
   const paisFiltro      = filtroPais.value;
   const todosProdutos   = document.querySelectorAll('.produto-card');
   let contadorPronta    = 0;
-  let contadorVendidos  = 0;
+  let contadorProcuradas = 0;
 
   todosProdutos.forEach(card => {
     const nome      = card.dataset.nome;
@@ -213,7 +225,7 @@ function filtrarProdutos() {
     if (matchBusca && matchCategoria && matchPais) {
       slide.style.display = 'block';
       if (categoria === 'pronta') contadorPronta++;
-      if (categoria === 'vendido') contadorVendidos++;
+      if (categoria === 'procurada') contadorProcuradas++;
     } else {
       slide.style.display = 'none';
     }
@@ -224,15 +236,44 @@ function filtrarProdutos() {
       ? 'block'
       : 'none';
 
-  document.getElementById('secaoVendidos').style.display =
-    (categoriaFiltro === 'todos' || categoriaFiltro === 'vendido') && contadorVendidos > 0
+  document.getElementById('secaoProcuradas').style.display =
+    (categoriaFiltro === 'todos' || categoriaFiltro === 'procurada') && contadorProcuradas > 0
       ? 'block'
       : 'none';
 
   swiperPronta.update();
-  swiperVendidos.update();
+  swiperProcuradas.update();
 }
 
 inputBusca.addEventListener('input', filtrarProdutos);
 filtroCategoria.addEventListener('change', filtrarProdutos);
 filtroPais.addEventListener('change', filtrarProdutos);
+
+// ========== LIGHTBOX ZOOM ==========
+function abrirLightbox(imagemSrc) {
+  const lightbox = document.getElementById('lightbox');
+  const img = lightbox.querySelector('img');
+  img.src = imagemSrc;
+  lightbox.classList.add('active');
+  document.body.style.overflow = 'hidden'; // Bloqueia scroll
+}
+
+function fecharLightbox() {
+  const lightbox = document.getElementById('lightbox');
+  lightbox.classList.remove('active');
+  document.body.style.overflow = 'auto'; // Libera scroll
+}
+
+// Fechar ao clicar no fundo escuro
+document.getElementById('lightbox').addEventListener('click', function(e) {
+  if (e.target === this) {
+    fecharLightbox();
+  }
+});
+
+// Fechar com ESC
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    fecharLightbox();
+  }
+});
