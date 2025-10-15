@@ -2,135 +2,184 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>🛸 UFO Store - Camisas de Futebol</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="UFO Store - As melhores camisas de futebol em Lagoa Vermelha/RS. Pronta entrega e encomendas dos principais times do Brasil e Europa.">
+  <meta name="keywords" content="camisas de futebol, uniformes esportivos, Lagoa Vermelha, RS, Barcelona, Real Madrid, Grêmio, Internacional">
+  <meta name="theme-color" content="#1a1a2e">
   
-  <!-- Preload fontes para performance -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <title>🛸 UFO Store - Camisas de Futebol | Lagoa Vermelha/RS</title>
   
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+  <!-- Preconnect para melhor performance -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+  
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+  
+  <!-- Estilos Customizados -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Loading Screen -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- LOADING SCREEN                                              -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
   <div id="loading-screen" class="loading-screen">
     <div class="loading-content">
-      <div class="ufo-loader">🛸</div>
-      <h2>UFO STORE</h2>
-      <p>Carregando catálogo...</p>
+      <div class="loading-logo">🛸</div>
+      <div class="loading-text">UFO STORE</div>
+      <div class="loading-spinner"></div>
     </div>
   </div>
 
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- CABEÇALHO                                                   -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
   <header class="cabecalho">
-    <h1>🛸 UFO STORE 👽</h1>
-    <p>Lagoa Vermelha/RS</p>
-    <a class="instagram-pagina"
-       href="https://www.instagram.com/ufo_store_rs?igsh=MWJlbnk2NG5vbTFuMg=="
-       target="_blank"
-       rel="noopener">
-      📱 Siga no Instagram
-    </a>
+    <div class="cabecalho-content">
+      <h1 class="cabecalho-titulo">
+        <span class="logo-icon">🛸</span>
+        UFO STORE
+        <span class="logo-icon">👽</span>
+      </h1>
+      <p class="cabecalho-localizacao">📍 Lagoa Vermelha/RS</p>
+      <a class="instagram-pagina"
+         href="https://www.instagram.com/ufo_store_rs?igsh=MWJlbnk2NG5vbTFuMg=="
+         target="_blank"
+         rel="noopener noreferrer"
+         aria-label="Siga nosso Instagram">
+        📱 Siga no Instagram
+      </a>
+    </div>
   </header>
 
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- SISTEMA DE FILTROS                                          -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
   <div class="filtros-container">
     <div class="busca-filtros">
-      <input
-        type="text"
-        class="busca-input"
-        id="busca"
-        placeholder="🔍 Buscar time, país ou liga..."
-      >
-      <select class="filtro-select" id="filtroCategoria">
-        <option value="todos">Todas as Categorias</option>
-        <option value="pronta">Pronta Entrega</option>
-        <option value="procurada">Mais Procuradas</option>
-      </select>
-      <select class="filtro-select" id="filtroPais">
-        <option value="todos">Todos os Países</option>
-        <option value="brasil">Brasil</option>
-        <option value="europa">Europa</option>
-      </select>
+      <!-- Campo de Busca -->
+      <div class="filtro-group">
+        <label for="busca" class="sr-only">Buscar produtos</label>
+        <input
+          type="text"
+          class="busca-input"
+          id="busca"
+          placeholder="🔍 Buscar time, país ou liga..."
+          aria-label="Buscar produtos"
+          autocomplete="off"
+        >
+      </div>
+
+      <!-- Filtro de Categoria -->
+      <div class="filtro-group">
+        <label for="filtroCategoria" class="sr-only">Filtrar por categoria</label>
+        <select class="filtro-select" id="filtroCategoria" aria-label="Filtrar por categoria">
+          <option value="todos">📦 Todas as Categorias</option>
+          <option value="pronta">✓ Pronta Entrega</option>
+          <option value="procurada">🔥 Mais Procuradas</option>
+        </select>
+      </div>
+
+      <!-- Filtro de País -->
+      <div class="filtro-group">
+        <label for="filtroPais" class="sr-only">Filtrar por país</label>
+        <select class="filtro-select" id="filtroPais" aria-label="Filtrar por país">
+          <option value="todos">🌎 Todos os Países</option>
+          <option value="brasil">🇧🇷 Brasil</option>
+          <option value="europa">🇪🇺 Europa</option>
+        </select>
+      </div>
     </div>
   </div>
 
-  <section class="carrossel-section" id="secaoPronta">
-    <h2>✓ PRONTA ENTREGA</h2>
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- SEÇÃO: PRONTA ENTREGA                                       -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="carrossel-section" id="secaoPronta" aria-labelledby="titulo-pronta">
+    <h2 id="titulo-pronta" class="secao-titulo">
+      <span class="titulo-icon">✓</span>
+      PRONTA ENTREGA
+    </h2>
     <div class="swiper swiper-pronta">
       <div class="swiper-wrapper" id="wrapperPronta"></div>
       <div class="swiper-pagination"></div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev" aria-label="Produto anterior"></div>
+      <div class="swiper-button-next" aria-label="Próximo produto"></div>
     </div>
   </section>
 
-  <section class="carrossel-section" id="secaoProcuradas">
-    <h2>🔥 MAIS PROCURADAS</h2>
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- SEÇÃO: MAIS PROCURADAS                                      -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="carrossel-section" id="secaoProcuradas" aria-labelledby="titulo-procuradas">
+    <h2 id="titulo-procuradas" class="secao-titulo">
+      <span class="titulo-icon">🔥</span>
+      MAIS PROCURADAS
+    </h2>
     <div class="swiper swiper-procuradas">
       <div class="swiper-wrapper" id="wrapperProcuradas"></div>
       <div class="swiper-pagination"></div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev" aria-label="Produto anterior"></div>
+      <div class="swiper-button-next" aria-label="Próximo produto"></div>
     </div>
   </section>
 
-  <!-- Lightbox Melhorado -->
-  <div id="lightbox" class="lightbox">
-    <button class="lightbox-close" onclick="fecharLightbox()">✕</button>
-    <img src="" alt="Zoom" />
-    <div class="lightbox-info">Clique fora ou pressione ESC para fechar</div>
-  </div>
-
-  <!-- Botão WhatsApp Flutuante -->
-  <a href="https://wa.me/5554999300593?text=Olá!%20Quero%20saber%20mais%20sobre%20as%20camisas%20da%20UFO%20Store" 
-     class="whatsapp-float" 
-     target="_blank"
-     rel="noopener"
-     title="Fale conosco no WhatsApp">
-    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-      <path d="M16 0C7.164 0 0 7.164 0 16c0 2.832.744 5.488 2.04 7.792L.088 30.5l7.04-1.84A15.877 15.877 0 0016 32c8.836 0 16-7.164 16-16S24.836 0 16 0zm0 29.36c-2.488 0-4.856-.688-6.872-1.88l-.492-.296-5.104 1.336 1.368-4.984-.324-.512A13.285 13.285 0 012.64 16c0-7.364 5.996-13.36 13.36-13.36 7.364 0 13.36 5.996 13.36 13.36 0 7.364-5.996 13.36-13.36 13.36zm7.32-9.984c-.4-.2-2.372-1.172-2.74-1.304-.368-.132-.636-.2-.904.2-.268.4-1.036 1.304-1.272 1.572-.236.268-.472.3-.872.1-.4-.2-1.688-.624-3.216-1.988-1.188-1.06-1.992-2.368-2.224-2.768-.236-.4-.024-.616.176-.816.18-.18.4-.472.6-.708.2-.236.268-.4.4-.668.132-.268.068-.5-.032-.7-.1-.2-.904-2.176-1.24-2.98-.328-.78-.66-.676-.904-.688-.236-.012-.504-.016-.772-.016-.268 0-.708.1-1.076.5-.368.4-1.404 1.372-1.404 3.348s1.436 3.884 1.636 4.152c.2.268 2.832 4.324 6.864 6.064.96.416 1.708.664 2.292.848.964.308 1.84.264 2.532.16.772-.116 2.372-.972 2.708-1.908.336-.936.336-1.74.236-1.908-.1-.168-.368-.268-.768-.468z" fill="currentColor"/>
-    </svg>
-  </a>
-
-  <!-- Botão Voltar ao Topo -->
-  <button id="voltarTopo" class="voltar-topo" title="Voltar ao topo">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-      <polyline points="18 15 12 9 6 15"></polyline>
-    </svg>
-  </button>
-
-  <!-- Toast de Notificação -->
-  <div id="toast" class="toast">
-    <span class="toast-icon">✓</span>
-    <span class="toast-message"></span>
-  </div>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-content">
-      <div class="footer-section">
-        <h3>🛸 UFO STORE</h3>
-        <p>As melhores camisas de futebol de Lagoa Vermelha/RS</p>
-      </div>
-      <div class="footer-section">
-        <h4>Contato</h4>
-        <p>📱 WhatsApp: (54) 99930-0593</p>
-        <p>📍 Lagoa Vermelha, RS</p>
-      </div>
-      <div class="footer-section">
-        <h4>Redes Sociais</h4>
-        <a href="https://www.instagram.com/ufo_store_rs?igsh=MWJlbnk2NG5vbTFuMg==" target="_blank" rel="noopener">
-          📱 Instagram @ufo_store_rs
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- RODAPÉ                                                      -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <footer class="rodape">
+    <div class="rodape-content">
+      <p class="rodape-texto">
+        <strong>🛸 UFO Store</strong> - Sua loja de camisas de futebol em Lagoa Vermelha/RS
+      </p>
+      <div class="rodape-links">
+        <a href="https://www.instagram.com/ufo_store_rs?igsh=MWJlbnk2NG5vbTFuMg=="
+           target="_blank"
+           rel="noopener noreferrer"
+           class="rodape-link">
+          📱 Instagram
+        </a>
+        <a href="https://wa.me/5554999300593"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="rodape-link">
+          💬 WhatsApp
         </a>
       </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2025 UFO Store - Todos os direitos reservados</p>
+      <p class="rodape-copyright">
+        © 2025 UFO Store - Todos os direitos reservados
+      </p>
     </div>
   </footer>
 
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- LIGHTBOX (Zoom de Imagens)                                  -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-label="Visualização ampliada da imagem">
+    <button class="lightbox-close" aria-label="Fechar visualização">✕</button>
+    <img src="" alt="Imagem ampliada do produto" />
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- TOAST DE NOTIFICAÇÕES                                       -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <div id="toast" class="toast" role="alert" aria-live="polite">
+    <span class="toast-message"></span>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- BOTÃO VOLTAR AO TOPO                                        -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <button id="voltarTopo" class="voltar-topo" aria-label="Voltar ao topo da página">
+    ↑
+  </button>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- SCRIPTS                                                     -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
   <script src="script.js"></script>
+
 </body>
 </html>
