@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════════════════
-// 🛸 UFO STORE - SISTEMA OTIMIZADO V3
+// 🛸 UFO STORE - SISTEMA ULTRA OTIMIZADO V4
 // ═══════════════════════════════════════════════════════════
 
 // ┌─────────────────────────────────────────────────────────┐
@@ -9,10 +9,10 @@ const CONFIG = {
   whatsapp: '5554999300593',
   instagram: 'https://www.instagram.com/ufo_store_rs?igsh=MWJlbnk2NG5vbTFuMg==',
   animacao: {
-    cardDelay: 30,
+    cardDelay: 20, // Reduzido de 30 para 20
     scrollThreshold: 300,
     toastDuration: 3000,
-    loadingDelay: 500
+    loadingDelay: 300 // Reduzido de 500 para 300
   }
 };
 
@@ -120,14 +120,105 @@ const PRODUTOS = {
       categoria: 'procurada',
       pais: 'europa'
     }
-  ]
+  ],
+
+  // ✨ NOVA SEÇÃO: CAMISETAS RETRÔ
+ retro: [
+  {
+    nome: 'Brasil 1998',
+    descricao: 'Brasil Retrô Copa 1998',
+    tamanhos: 'P, M, G, GG',
+    imagem: 'img\\retro\\Seleção Brasileira 1998 Retrô.jpg',
+    categoria: 'retro',
+    pais: 'brasil'
+  },
+  {
+    nome: 'Milan 2007',
+    descricao: 'Milan Retrô 2007',
+    tamanhos: 'P, M, G, GG',
+    imagem: 'img\\retro\\Camisa Milan RETRO 2007.jpg',
+    categoria: 'retro',
+    pais: 'europa'
+  },
+  {
+    nome: 'Arsenal 2006',
+    descricao: 'Camisa Arsenal Retrô 2006',
+    tamanhos: 'P, M, G, GG',
+    imagem: 'img\\retro\\arsenal retro.jpg',
+    categoria: 'retro',
+    pais: 'europa'
+  },
+  {
+    nome: 'Fiorentina 1998',
+    descricao: 'Fiorentina Retrô 1998',
+    tamanhos: 'P, M, G, GG',
+    imagem: 'img\\retro\\Camisa Fiorentina RETRO 1998.jpg',
+    categoria: 'retro',
+    pais: 'europa'
+  },
+  {
+    nome: 'Parma 2002',
+    descricao: 'Parma Retrô 2002',
+    tamanhos: 'P, M, G, GG',
+    imagem: 'img\\retro\\Parma Retro 2002.jpg',
+    categoria: 'retro',
+    pais: 'europa'
+  },
+  {
+    nome: 'Real Betis 2000',
+    descricao: 'Real Betis Retrô 2000',
+    tamanhos: 'P, M, G, GG',
+    imagem: 'img\\retro\\Real Bétis Retro 2000.jpg',
+    categoria: 'retro',
+    pais: 'europa'
+  },
+  {
+    nome: 'Grêmio 2000',
+    descricao: 'Camisa Grêmio Retrô 2000',
+    tamanhos: 'P, M, G, GG',
+    imagem: 'img\\retro\\Camisa Grêmio RETRO 2000.jpg',
+    categoria: 'retro',
+    pais: 'brasil'
+  },
+  {
+    nome: 'Internacional 1997',
+    descricao: 'Internacional Retrô 1997',
+    tamanhos: 'P, M, G, GG',
+    imagem: 'img\\retro\\Internacional Retro 1997.jpg',
+    categoria: 'retro',
+    pais: 'brasil'
+  },
+  {
+    nome: 'Manchester United 1999',
+    descricao: 'Manchester United Retrô 1999',
+    tamanhos: 'P, M, G, GG',
+    imagem: 'img\\retro\\Camisa Manchester United RETRO 1999.jpg',
+    categoria: 'retro',
+    pais: 'europa'
+  },
+  {
+    nome: 'Corinthians 1999',
+    descricao: 'Corinthians Retrô 1999',
+    tamanhos: 'P, M, G, GG',
+    imagem: 'img\\retro\\Corinthians Retro 1999.jpg',
+    categoria: 'retro',
+    pais: 'brasil'
+  },
+  {
+    nome: 'Palmeiras 1992',
+    descricao: 'Palmeiras Retrô 1992',
+    tamanhos: 'P, M, G, GG',
+    imagem: 'img\\retro\\Palmeiras Retrô 1992.jpg',
+    categoria: 'retro',
+    pais: 'brasil'
+  }
+]
 };
 
 // ┌─────────────────────────────────────────────────────────┐
 // │ UTILITÁRIOS                                             │
 // └─────────────────────────────────────────────────────────┘
 const Utils = {
-  // Debounce para otimizar eventos
   debounce(func, wait) {
     let timeout;
     return (...args) => {
@@ -136,7 +227,6 @@ const Utils = {
     };
   },
 
-  // Throttle para scroll
   throttle(func, limit) {
     let inThrottle;
     return function(...args) {
@@ -148,7 +238,6 @@ const Utils = {
     };
   },
 
-  // Gerar link do WhatsApp
   gerarWhatsAppLink(produto) {
     const imagemUrl = `${window.location.origin}/${produto.imagem}`;
     const mensagem = `Olá! Tenho interesse na camisa do *${produto.nome}*\n\n📸 Foto: ${imagemUrl}\n👕 Descrição: ${produto.descricao}\n📏 Tamanhos disponíveis: ${produto.tamanhos}`;
@@ -157,33 +246,24 @@ const Utils = {
 };
 
 // ┌─────────────────────────────────────────────────────────┐
-// │ COMPONENTES - PRODUTO CARD                              │
+// │ COMPONENTES - PRODUTO CARD (OTIMIZADO)                 │
 // └─────────────────────────────────────────────────────────┘
 const ProdutoCard = {
-  // Criar badge baseado na categoria
-  criarBadge(categoria) {
-    const badges = {
-      pronta: '<span class="badge badge-pronta">✓ Pronta Entrega</span>',
-      procurada: '<span class="badge badge-procurada">🔥 Mais Procuradas</span>'
-    };
-    return badges[categoria] || '';
+  badges: {
+    pronta: '<span class="badge badge-pronta">✓ Pronta Entrega</span>',
+    procurada: '<span class="badge badge-procurada">🔥 Mais Procuradas</span>',
+    retro: '<span class="badge badge-retro">⏰ Clássica Retrô</span>'
   },
 
-  // Criar HTML do card
+  // Template otimizado usando template literals
   criar(produto) {
-    const badge = this.criarBadge(produto.categoria);
+    const badge = this.badges[produto.categoria] || '';
     const whatsappLink = Utils.gerarWhatsAppLink(produto);
 
-    return `
-      <div class="produto-card"
-           data-nome="${produto.nome.toLowerCase()}"
-           data-categoria="${produto.categoria}"
-           data-pais="${produto.pais}">
+    return `<div class="produto-card" data-nome="${produto.nome.toLowerCase()}" data-categoria="${produto.categoria}" data-pais="${produto.pais}">
         <div class="produto-imagem" onclick="Lightbox.abrir('${produto.imagem}')">
           ${badge}
-          <img src="${produto.imagem}"
-               alt="${produto.nome}"
-               loading="lazy">
+          <img src="${produto.imagem}" alt="${produto.nome}" loading="lazy">
           <div class="zoom-icon">🔍</div>
         </div>
         <div class="produto-info">
@@ -191,77 +271,98 @@ const ProdutoCard = {
           <p class="produto-descricao">${produto.descricao}</p>
           <p class="produto-tamanhos">📏 ${produto.tamanhos}</p>
           <div class="produto-footer">
-            <a href="${whatsappLink}"
-               class="btn-whatsapp"
-               target="_blank"
-               rel="noopener"
-               onclick="Toast.mostrar('Abrindo WhatsApp... 💬')">
-              💬 Pedir
-            </a>
+            <a href="${whatsappLink}" class="btn-whatsapp" target="_blank" rel="noopener" onclick="Toast.mostrar('Abrindo WhatsApp... 💬')">💬 Pedir</a>
           </div>
         </div>
-      </div>
-    `;
+      </div>`;
   }
 };
 
 // ┌─────────────────────────────────────────────────────────┐
-// │ RENDERIZAÇÃO DE PRODUTOS                                │
+// │ RENDERIZAÇÃO DE PRODUTOS (SUPER OTIMIZADO)             │
 // └─────────────────────────────────────────────────────────┘
 const Renderizador = {
+  // Cache dos wrappers
+  wrappers: {},
+
+  init() {
+    this.wrappers = {
+      pronta: document.getElementById('wrapperPronta'),
+      procuradas: document.getElementById('wrapperProcuradas'),
+      retro: document.getElementById('wrapper-retro')
+    };
+  },
+
+  // Renderização usando DocumentFragment para melhor performance
+  renderizarSecao(produtos, wrapper) {
+    const fragment = document.createDocumentFragment();
+    const tempDiv = document.createElement('div');
+    
+    tempDiv.innerHTML = produtos
+      .map(p => `<div class="swiper-slide">${ProdutoCard.criar(p)}</div>`)
+      .join('');
+    
+    while (tempDiv.firstChild) {
+      fragment.appendChild(tempDiv.firstChild);
+    }
+    
+    wrapper.appendChild(fragment);
+  },
+
   animar() {
-    requestAnimationFrame(() => {
-      document.querySelectorAll('.produto-card').forEach((card, index) => {
-        setTimeout(() => {
-          card.style.opacity = '1';
-          card.style.transform = 'translateY(0)';
-        }, index * CONFIG.animacao.cardDelay);
-      });
-    });
+    const cards = document.querySelectorAll('.produto-card');
+    let index = 0;
+    
+    const animarProximo = () => {
+      if (index < cards.length) {
+        cards[index].style.opacity = '1';
+        cards[index].style.transform = 'translateY(0)';
+        index++;
+        setTimeout(animarProximo, CONFIG.animacao.cardDelay);
+      }
+    };
+    
+    requestAnimationFrame(animarProximo);
   },
 
   renderizar() {
-    const wrapperPronta = document.getElementById('wrapperPronta');
-    const wrapperProcuradas = document.getElementById('wrapperProcuradas');
-
-    wrapperPronta.innerHTML = PRODUTOS.prontaEntrega
-      .map(p => `<div class="swiper-slide">${ProdutoCard.criar(p)}</div>`)
-      .join('');
-
-    wrapperProcuradas.innerHTML = PRODUTOS.maisProcuradas
-      .map(p => `<div class="swiper-slide">${ProdutoCard.criar(p)}</div>`)
-      .join('');
-
-    setTimeout(() => this.animar(), 100);
+    this.renderizarSecao(PRODUTOS.prontaEntrega, this.wrappers.pronta);
+    this.renderizarSecao(PRODUTOS.maisProcuradas, this.wrappers.procuradas);
+    this.renderizarSecao(PRODUTOS.retro, this.wrappers.retro);
+    
+    // Animar após renderizar
+    requestAnimationFrame(() => {
+      setTimeout(() => this.animar(), 50);
+    });
   }
 };
 
 // ┌─────────────────────────────────────────────────────────┐
-// │ SWIPER - CONFIGURAÇÃO E INICIALIZAÇÃO                   │
+// │ SWIPER - CONFIGURAÇÃO OTIMIZADA                         │
 // └─────────────────────────────────────────────────────────┘
 const SwiperConfig = {
   base: {
-    loop: true,
-    speed: 400,
-    loopAdditionalSlides: 2,
-    watchSlidesProgress: true,
-    watchSlidesVisibility: true,
-    observer: true,
-    observeParents: true,
+    loop: false, // Desabilitado para melhor performance
+    speed: 300, // Reduzido de 400 para 300
+    slidesPerView: 1.2,
+    spaceBetween: 15,
+    watchSlidesProgress: false, // Desabilitado
+    watchSlidesVisibility: false, // Desabilitado
+    observer: false, // Desabilitado
+    observeParents: false, // Desabilitado
     
     lazy: {
       loadPrevNext: true,
-      loadPrevNextAmount: 2
+      loadPrevNextAmount: 1 // Reduzido de 2 para 1
     },
     
     pagination: {
       clickable: true,
       dynamicBullets: true,
-      dynamicMainBullets: 3
+      dynamicMainBullets: 2 // Reduzido de 3 para 2
     },
     
     breakpoints: {
-      320: { slidesPerView: 1.2, spaceBetween: 15, centeredSlides: false },
       480: { slidesPerView: 2, spaceBetween: 20 },
       768: { slidesPerView: 3, spaceBetween: 25 },
       1024: { slidesPerView: 4, spaceBetween: 30 }
@@ -270,12 +371,7 @@ const SwiperConfig = {
     resistanceRatio: 0.85,
     touchRatio: 1,
     threshold: 5,
-    preventInteractionOnTransition: true,
-    
-    on: {
-      init() { this.update(); },
-      resize() { this.update(); }
-    }
+    preventInteractionOnTransition: false // Melhor fluidez
   },
 
   criar(selector, paginationSelector, navPrefix) {
@@ -285,7 +381,7 @@ const SwiperConfig = {
         el: paginationSelector,
         clickable: true,
         dynamicBullets: true,
-        dynamicMainBullets: 3
+        dynamicMainBullets: 2
       },
       navigation: {
         prevEl: `${navPrefix} .swiper-button-prev`,
@@ -296,25 +392,36 @@ const SwiperConfig = {
 };
 
 // Instâncias do Swiper
-let swiperPronta, swiperProcuradas;
+let swipers = {};
 
 // ┌─────────────────────────────────────────────────────────┐
-// │ SISTEMA DE FILTROS                                      │
+// │ SISTEMA DE FILTROS (OTIMIZADO)                         │
 // └─────────────────────────────────────────────────────────┘
 const Filtros = {
-  elementos: {
-    busca: null,
-    categoria: null,
-    pais: null
-  },
+  elementos: {},
+  secoes: {},
 
   init() {
-    this.elementos.busca = document.getElementById('busca');
-    this.elementos.categoria = document.getElementById('filtroCategoria');
-    this.elementos.pais = document.getElementById('filtroPais');
+    this.elementos = {
+      busca: document.getElementById('busca'),
+      categoria: document.getElementById('filtroCategoria'),
+      pais: document.getElementById('filtroPais')
+    };
+
+    this.secoes = {
+      pronta: document.getElementById('secaoPronta'),
+      procuradas: document.getElementById('secaoProcuradas'),
+      retro: document.getElementById('secao-retro')
+    };
+
+    // Adicionar opção de filtro para retrô
+    const optRetro = document.createElement('option');
+    optRetro.value = 'retro';
+    optRetro.textContent = '⏰ Clássicas Retrô';
+    this.elementos.categoria.appendChild(optRetro);
 
     this.elementos.busca.addEventListener('input', 
-      Utils.debounce(() => this.aplicar(), 250)
+      Utils.debounce(() => this.aplicar(), 200) // Reduzido de 250 para 200
     );
     this.elementos.categoria.addEventListener('change', () => this.aplicar());
     this.elementos.pais.addEventListener('change', () => this.aplicar());
@@ -325,9 +432,11 @@ const Filtros = {
     const categoria = this.elementos.categoria.value;
     const pais = this.elementos.pais.value;
     
-    let contadores = { pronta: 0, procurada: 0 };
+    const contadores = { pronta: 0, procurada: 0, retro: 0 };
+    const cards = document.querySelectorAll('.produto-card');
 
-    document.querySelectorAll('.produto-card').forEach(card => {
+    // Batch DOM updates
+    cards.forEach(card => {
       const match = {
         busca: card.dataset.nome.includes(termo),
         categoria: categoria === 'todos' || card.dataset.categoria === categoria,
@@ -337,7 +446,7 @@ const Filtros = {
       const mostrar = match.busca && match.categoria && match.pais;
       const slide = card.closest('.swiper-slide');
       
-      slide.style.display = mostrar ? 'block' : 'none';
+      slide.style.display = mostrar ? '' : 'none';
       
       if (mostrar) {
         contadores[card.dataset.categoria]++;
@@ -349,21 +458,18 @@ const Filtros = {
   },
 
   atualizarSecoes(categoria, contadores) {
-    document.getElementById('secaoPronta').style.display =
-      (categoria === 'todos' || categoria === 'pronta') && contadores.pronta > 0
-        ? 'block' : 'none';
+    const mostrarPronta = (categoria === 'todos' || categoria === 'pronta') && contadores.pronta > 0;
+    const mostrarProcuradas = (categoria === 'todos' || categoria === 'procurada') && contadores.procurada > 0;
+    const mostrarRetro = (categoria === 'todos' || categoria === 'retro') && contadores.retro > 0;
 
-    document.getElementById('secaoProcuradas').style.display =
-      (categoria === 'todos' || categoria === 'procurada') && contadores.procurada > 0
-        ? 'block' : 'none';
+    this.secoes.pronta.style.display = mostrarPronta ? '' : 'none';
+    this.secoes.procuradas.style.display = mostrarProcuradas ? '' : 'none';
+    this.secoes.retro.style.display = mostrarRetro ? '' : 'none';
   },
 
   atualizarSwipers() {
     requestAnimationFrame(() => {
-      setTimeout(() => {
-        swiperPronta?.update();
-        swiperProcuradas?.update();
-      }, 50);
+      Object.values(swipers).forEach(swiper => swiper?.update());
     });
   }
 };
@@ -398,7 +504,7 @@ const Lightbox = {
 
   fechar() {
     this.elemento.classList.remove('active');
-    document.body.style.overflow = 'auto';
+    document.body.style.overflow = '';
   }
 };
 
@@ -434,7 +540,8 @@ const BotaoTopo = {
     this.elemento = document.getElementById('voltarTopo');
 
     window.addEventListener('scroll', 
-      Utils.throttle(() => this.toggle(), 100)
+      Utils.throttle(() => this.toggle(), 150), // Otimizado
+      { passive: true }
     );
 
     this.elemento.addEventListener('click', () => this.scrollToTop());
@@ -449,36 +556,7 @@ const BotaoTopo = {
   },
 
   scrollToTop() {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  }
-};
-
-// ┌─────────────────────────────────────────────────────────┐
-// │ LAZY LOADING DE IMAGENS                                 │
-// └─────────────────────────────────────────────────────────┘
-const LazyLoad = {
-  init() {
-    if (!('IntersectionObserver' in window)) return;
-
-    const observer = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const img = entry.target;
-          if (img.dataset.src) {
-            img.src = img.dataset.src;
-            img.classList.add('loaded');
-          }
-          obs.unobserve(img);
-        }
-      });
-    }, { rootMargin: '50px' });
-
-    document.querySelectorAll('img[data-src]').forEach(img => {
-      observer.observe(img);
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 };
 
@@ -487,33 +565,38 @@ const LazyLoad = {
 // └─────────────────────────────────────────────────────────┘
 const LoadingScreen = {
   init() {
-    window.addEventListener('load', () => {
-      const loading = document.getElementById('loading-screen');
-      
+    const loading = document.getElementById('loading-screen');
+    
+    const hideLoading = () => {
       setTimeout(() => {
         loading.classList.add('fade-out');
         setTimeout(() => {
           loading.style.display = 'none';
-        }, 500);
+        }, 400);
       }, CONFIG.animacao.loadingDelay);
-    });
+    };
+
+    if (document.readyState === 'complete') {
+      hideLoading();
+    } else {
+      window.addEventListener('load', hideLoading);
+    }
   }
 };
 
 // ┌─────────────────────────────────────────────────────────┐
-// │ GERENCIADOR DE REDIMENSIONAMENTO                        │
+// │ GERENCIADOR DE REDIMENSIONAMENTO (OTIMIZADO)           │
 // └─────────────────────────────────────────────────────────┘
 const ResizeManager = {
-  timer: null,
-
   init() {
+    let timer = null;
+    
     window.addEventListener('resize', () => {
-      clearTimeout(this.timer);
-      this.timer = setTimeout(() => {
-        swiperPronta?.update();
-        swiperProcuradas?.update();
-      }, 250);
-    });
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        Object.values(swipers).forEach(swiper => swiper?.update());
+      }, 200); // Reduzido de 250 para 200
+    }, { passive: true });
   }
 };
 
@@ -522,36 +605,55 @@ const ResizeManager = {
 // └─────────────────────────────────────────────────────────┘
 const App = {
   init() {
-    // Renderizar produtos
+    // Inicializar renderizador
+    Renderizador.init();
     Renderizador.renderizar();
 
-    // Inicializar Swipers
-    swiperPronta = SwiperConfig.criar(
-      '.swiper-pronta',
-      '.swiper-pronta .swiper-pagination',
-      '.swiper-pronta'
-    );
+    // Aguardar DOM estar pronto antes de inicializar Swipers
+    requestAnimationFrame(() => {
+      // Inicializar Swipers
+      swipers.pronta = SwiperConfig.criar(
+        '.swiper-pronta',
+        '.swiper-pronta .swiper-pagination',
+        '.swiper-pronta'
+      );
 
-    swiperProcuradas = SwiperConfig.criar(
-      '.swiper-procuradas',
-      '.swiper-procuradas .swiper-pagination',
-      '.swiper-procuradas'
-    );
+      swipers.procuradas = SwiperConfig.criar(
+        '.swiper-procuradas',
+        '.swiper-procuradas .swiper-pagination',
+        '.swiper-procuradas'
+      );
 
-    // Inicializar componentes
-    Filtros.init();
-    Lightbox.init();
-    Toast.init();
-    BotaoTopo.init();
-    LazyLoad.init();
-    LoadingScreen.init();
-    ResizeManager.init();
+      swipers.retro = SwiperConfig.criar(
+        '.swiper-retro',
+        '.swiper-retro .swiper-pagination',
+        '.swiper-retro'
+      );
 
-    console.log('🛸 UFO Store carregado com sucesso!');
+      // Inicializar componentes
+      Filtros.init();
+      Lightbox.init();
+      Toast.init();
+      BotaoTopo.init();
+      LoadingScreen.init();
+      ResizeManager.init();
+
+      console.log('🛸 UFO Store V4 carregado com sucesso!');
+      console.log('📊 Produtos carregados:', {
+        'Pronta Entrega': PRODUTOS.prontaEntrega.length,
+        'Mais Procuradas': PRODUTOS.maisProcuradas.length,
+        'Clássicas Retrô': PRODUTOS.retro.length,
+        'Total': PRODUTOS.prontaEntrega.length + PRODUTOS.maisProcuradas.length + PRODUTOS.retro.length
+      });
+    });
   }
 };
 
 // ═══════════════════════════════════════════════════════════
 // 🚀 INICIAR APLICAÇÃO
 // ═══════════════════════════════════════════════════════════
-App.init();
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => App.init());
+} else {
+  App.init();
+}
