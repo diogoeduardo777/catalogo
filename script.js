@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════════════════
-// 🛸 UFO STORE - SISTEMA ULTRA OTIMIZADO V4
+// 🛸 UFO STORE - SISTEMA ULTRA OTIMIZADO V5.1 MOBILE-FIRST
 // ═══════════════════════════════════════════════════════════
 
 // ┌─────────────────────────────────────────────────────────┐
@@ -9,15 +9,15 @@ const CONFIG = {
   whatsapp: '5554999300593',
   instagram: 'https://www.instagram.com/ufo_store_rs?igsh=MWJlbnk2NG5vbTFuMg==',
   animacao: {
-    cardDelay: 20, // Reduzido de 30 para 20
+    cardDelay: 15,
     scrollThreshold: 300,
     toastDuration: 3000,
-    loadingDelay: 300 // Reduzido de 500 para 300
+    loadingDelay: 300
   }
 };
 
 // ┌─────────────────────────────────────────────────────────┐
-// │ BASE DE DADOS - PRODUTOS                                │
+// │ BASE DE DADOS - PRODUTOS (CAMINHOS CORRIGIDOS!)        │
 // └─────────────────────────────────────────────────────────┘
 const PRODUTOS = {
   prontaEntrega: [
@@ -122,97 +122,97 @@ const PRODUTOS = {
     }
   ],
 
-  // ✨ NOVA SEÇÃO: CAMISETAS RETRÔ
- retro: [
-  {
-    nome: 'Brasil 1998',
-    descricao: 'Brasil Retrô Copa 1998',
-    tamanhos: 'P, M, G, GG',
-    imagem: 'img\\retro\\Seleção Brasileira 1998 Retrô.jpg',
-    categoria: 'retro',
-    pais: 'brasil'
-  },
-  {
-    nome: 'Milan 2007',
-    descricao: 'Milan Retrô 2007',
-    tamanhos: 'P, M, G, GG',
-    imagem: 'img\\retro\\Camisa Milan RETRO 2007.jpg',
-    categoria: 'retro',
-    pais: 'europa'
-  },
-  {
-    nome: 'Arsenal 2006',
-    descricao: 'Camisa Arsenal Retrô 2006',
-    tamanhos: 'P, M, G, GG',
-    imagem: 'img\\retro\\arsenal retro.jpg',
-    categoria: 'retro',
-    pais: 'europa'
-  },
-  {
-    nome: 'Fiorentina 1998',
-    descricao: 'Fiorentina Retrô 1998',
-    tamanhos: 'P, M, G, GG',
-    imagem: 'img\\retro\\Camisa Fiorentina RETRO 1998.jpg',
-    categoria: 'retro',
-    pais: 'europa'
-  },
-  {
-    nome: 'Parma 2002',
-    descricao: 'Parma Retrô 2002',
-    tamanhos: 'P, M, G, GG',
-    imagem: 'img\\retro\\Parma Retro 2002.jpg',
-    categoria: 'retro',
-    pais: 'europa'
-  },
-  {
-    nome: 'Real Betis 2000',
-    descricao: 'Real Betis Retrô 2000',
-    tamanhos: 'P, M, G, GG',
-    imagem: 'img\\retro\\Real Bétis Retro 2000.jpg',
-    categoria: 'retro',
-    pais: 'europa'
-  },
-  {
-    nome: 'Grêmio 2000',
-    descricao: 'Camisa Grêmio Retrô 2000',
-    tamanhos: 'P, M, G, GG',
-    imagem: 'img\\retro\\Camisa Grêmio RETRO 2000.jpg',
-    categoria: 'retro',
-    pais: 'brasil'
-  },
-  {
-    nome: 'Internacional 1997',
-    descricao: 'Internacional Retrô 1997',
-    tamanhos: 'P, M, G, GG',
-    imagem: 'img\\retro\\Internacional Retro 1997.jpg',
-    categoria: 'retro',
-    pais: 'brasil'
-  },
-  {
-    nome: 'Manchester United 1999',
-    descricao: 'Manchester United Retrô 1999',
-    tamanhos: 'P, M, G, GG',
-    imagem: 'img\\retro\\Camisa Manchester United RETRO 1999.jpg',
-    categoria: 'retro',
-    pais: 'europa'
-  },
-  {
-    nome: 'Corinthians 1999',
-    descricao: 'Corinthians Retrô 1999',
-    tamanhos: 'P, M, G, GG',
-    imagem: 'img\\retro\\Corinthians Retro 1999.jpg',
-    categoria: 'retro',
-    pais: 'brasil'
-  },
-  {
-    nome: 'Palmeiras 1992',
-    descricao: 'Palmeiras Retrô 1992',
-    tamanhos: 'P, M, G, GG',
-    imagem: 'img\\retro\\Palmeiras Retrô 1992.jpg',
-    categoria: 'retro',
-    pais: 'brasil'
-  }
-]
+  // ✅ CORRIGIDO: Barras invertidas trocadas por barras normais
+  retro: [
+    {
+      nome: 'Brasil 1998',
+      descricao: 'Brasil Retrô Copa 1998',
+      tamanhos: 'P, M, G, GG',
+      imagem: 'img/retro/Seleção Brasileira 1998 Retrô.jpg',
+      categoria: 'retro',
+      pais: 'brasil'
+    },
+    {
+      nome: 'Milan 2007',
+      descricao: 'Milan Retrô 2007',
+      tamanhos: 'P, M, G, GG',
+      imagem: 'img/retro/Camisa Milan RETRO 2007.jpg',
+      categoria: 'retro',
+      pais: 'europa'
+    },
+    {
+      nome: 'Arsenal 2006',
+      descricao: 'Camisa Arsenal Retrô 2006',
+      tamanhos: 'P, M, G, GG',
+      imagem: 'img/retro/arsenal retro.jpg',
+      categoria: 'retro',
+      pais: 'europa'
+    },
+    {
+      nome: 'Fiorentina 1998',
+      descricao: 'Fiorentina Retrô 1998',
+      tamanhos: 'P, M, G, GG',
+      imagem: 'img/retro/Camisa Fiorentina RETRO 1998.jpg',
+      categoria: 'retro',
+      pais: 'europa'
+    },
+    {
+      nome: 'Parma 2002',
+      descricao: 'Parma Retrô 2002',
+      tamanhos: 'P, M, G, GG',
+      imagem: 'img/retro/Parma Retro 2002.jpg',
+      categoria: 'retro',
+      pais: 'europa'
+    },
+    {
+      nome: 'Real Betis 2000',
+      descricao: 'Real Betis Retrô 2000',
+      tamanhos: 'P, M, G, GG',
+      imagem: 'img/retro/Real Bétis Retro 2000.jpg',
+      categoria: 'retro',
+      pais: 'europa'
+    },
+    {
+      nome: 'Grêmio 2000',
+      descricao: 'Camisa Grêmio Retrô 2000',
+      tamanhos: 'P, M, G, GG',
+      imagem: 'img/retro/Camisa Grêmio RETRO 2000.jpg',
+      categoria: 'retro',
+      pais: 'brasil'
+    },
+    {
+      nome: 'Internacional 1997',
+      descricao: 'Internacional Retrô 1997',
+      tamanhos: 'P, M, G, GG',
+      imagem: 'img/retro/Internacional Retro 1997.jpg',
+      categoria: 'retro',
+      pais: 'brasil'
+    },
+    {
+      nome: 'Manchester United 1999',
+      descricao: 'Manchester United Retrô 1999',
+      tamanhos: 'P, M, G, GG',
+      imagem: 'img/retro/Camisa Manchester United RETRO 1999.jpg',
+      categoria: 'retro',
+      pais: 'europa'
+    },
+    {
+      nome: 'Corinthians 1999',
+      descricao: 'Corinthians Retrô 1999',
+      tamanhos: 'P, M, G, GG',
+      imagem: 'img/retro/Corinthians Retro 1999.jpg',
+      categoria: 'retro',
+      pais: 'brasil'
+    },
+    {
+      nome: 'Palmeiras 1992',
+      descricao: 'Palmeiras Retrô 1992',
+      tamanhos: 'P, M, G, GG',
+      imagem: 'img/retro/Palmeiras Retrô 1992.jpg',
+      categoria: 'retro',
+      pais: 'brasil'
+    }
+  ]
 };
 
 // ┌─────────────────────────────────────────────────────────┐
@@ -238,32 +238,37 @@ const Utils = {
     };
   },
 
+  // ✅ Normaliza caminhos para garantir compatibilidade
+  normalizarCaminho(caminho) {
+    return caminho.replace(/\\/g, '/');
+  },
+
   gerarWhatsAppLink(produto) {
-    const imagemUrl = `${window.location.origin}/${produto.imagem}`;
-    const mensagem = `Olá! Tenho interesse na camisa do *${produto.nome}*\n\n📸 Foto: ${imagemUrl}\n👕 Descrição: ${produto.descricao}\n📏 Tamanhos disponíveis: ${produto.tamanhos}`;
+    const mensagem = `Olá! Tenho interesse na camisa:\n\n🔹 *${produto.nome}*\n👕 ${produto.descricao}\n📏 Tamanhos: ${produto.tamanhos}\n\nPode me enviar mais informações?`;
     return `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(mensagem)}`;
   }
 };
 
 // ┌─────────────────────────────────────────────────────────┐
-// │ COMPONENTES - PRODUTO CARD (OTIMIZADO)                 │
+// │ COMPONENTES - PRODUTO CARD                              │
 // └─────────────────────────────────────────────────────────┘
 const ProdutoCard = {
   badges: {
-    pronta: '<span class="badge badge-pronta">✓ Pronta Entrega</span>',
-    procurada: '<span class="badge badge-procurada">🔥 Mais Procuradas</span>',
-    retro: '<span class="badge badge-retro">⏰ Clássica Retrô</span>'
+    pronta: '<span class="badge badge-pronta">✓ Pronta</span>',
+    procurada: '<span class="badge badge-procurada">🔥 Top</span>',
+    retro: '<span class="badge badge-retro">⏰ Retrô</span>'
   },
 
-  // Template otimizado usando template literals
   criar(produto) {
     const badge = this.badges[produto.categoria] || '';
     const whatsappLink = Utils.gerarWhatsAppLink(produto);
+    // ✅ Normaliza o caminho da imagem
+    const imagemNormalizada = Utils.normalizarCaminho(produto.imagem);
 
     return `<div class="produto-card" data-nome="${produto.nome.toLowerCase()}" data-categoria="${produto.categoria}" data-pais="${produto.pais}">
-        <div class="produto-imagem" onclick="Lightbox.abrir('${produto.imagem}')">
+        <div class="produto-imagem" onclick="Lightbox.abrir('${imagemNormalizada}', '${produto.nome}')">
           ${badge}
-          <img src="${produto.imagem}" alt="${produto.nome}" loading="lazy">
+          <img src="${imagemNormalizada}" alt="${produto.nome}" loading="lazy" onerror="this.src='img/placeholder.jpg'">
           <div class="zoom-icon">🔍</div>
         </div>
         <div class="produto-info">
@@ -271,7 +276,9 @@ const ProdutoCard = {
           <p class="produto-descricao">${produto.descricao}</p>
           <p class="produto-tamanhos">📏 ${produto.tamanhos}</p>
           <div class="produto-footer">
-            <a href="${whatsappLink}" class="btn-whatsapp" target="_blank" rel="noopener" onclick="Toast.mostrar('Abrindo WhatsApp... 💬')">💬 Pedir</a>
+            <a href="${whatsappLink}" class="btn-whatsapp" target="_blank" rel="noopener">
+              💬 Pedir no WhatsApp
+            </a>
           </div>
         </div>
       </div>`;
@@ -279,10 +286,9 @@ const ProdutoCard = {
 };
 
 // ┌─────────────────────────────────────────────────────────┐
-// │ RENDERIZAÇÃO DE PRODUTOS (SUPER OTIMIZADO)             │
+// │ RENDERIZAÇÃO DE PRODUTOS                                │
 // └─────────────────────────────────────────────────────────┘
 const Renderizador = {
-  // Cache dos wrappers
   wrappers: {},
 
   init() {
@@ -293,7 +299,6 @@ const Renderizador = {
     };
   },
 
-  // Renderização usando DocumentFragment para melhor performance
   renderizarSecao(produtos, wrapper) {
     const fragment = document.createDocumentFragment();
     const tempDiv = document.createElement('div');
@@ -330,7 +335,6 @@ const Renderizador = {
     this.renderizarSecao(PRODUTOS.maisProcuradas, this.wrappers.procuradas);
     this.renderizarSecao(PRODUTOS.retro, this.wrappers.retro);
     
-    // Animar após renderizar
     requestAnimationFrame(() => {
       setTimeout(() => this.animar(), 50);
     });
@@ -342,36 +346,49 @@ const Renderizador = {
 // └─────────────────────────────────────────────────────────┘
 const SwiperConfig = {
   base: {
-    loop: false, // Desabilitado para melhor performance
-    speed: 300, // Reduzido de 400 para 300
+    loop: false,
+    speed: 300,
     slidesPerView: 1.2,
     spaceBetween: 15,
-    watchSlidesProgress: false, // Desabilitado
-    watchSlidesVisibility: false, // Desabilitado
-    observer: false, // Desabilitado
-    observeParents: false, // Desabilitado
+    centeredSlides: false,
     
     lazy: {
       loadPrevNext: true,
-      loadPrevNextAmount: 1 // Reduzido de 2 para 1
+      loadPrevNextAmount: 1
     },
     
     pagination: {
       clickable: true,
       dynamicBullets: true,
-      dynamicMainBullets: 2 // Reduzido de 3 para 2
+      dynamicMainBullets: 2
     },
     
     breakpoints: {
-      480: { slidesPerView: 2, spaceBetween: 20 },
-      768: { slidesPerView: 3, spaceBetween: 25 },
-      1024: { slidesPerView: 4, spaceBetween: 30 }
+      480: { 
+        slidesPerView: 1.8, 
+        spaceBetween: 15 
+      },
+      640: { 
+        slidesPerView: 2.2, 
+        spaceBetween: 20 
+      },
+      768: { 
+        slidesPerView: 2.5, 
+        spaceBetween: 20 
+      },
+      1024: { 
+        slidesPerView: 3.5, 
+        spaceBetween: 25 
+      },
+      1280: { 
+        slidesPerView: 4, 
+        spaceBetween: 30 
+      }
     },
     
     resistanceRatio: 0.85,
     touchRatio: 1,
-    threshold: 5,
-    preventInteractionOnTransition: false // Melhor fluidez
+    threshold: 5
   },
 
   criar(selector, paginationSelector, navPrefix) {
@@ -391,11 +408,10 @@ const SwiperConfig = {
   }
 };
 
-// Instâncias do Swiper
 let swipers = {};
 
 // ┌─────────────────────────────────────────────────────────┐
-// │ SISTEMA DE FILTROS (OTIMIZADO)                         │
+// │ SISTEMA DE FILTROS                                      │
 // └─────────────────────────────────────────────────────────┘
 const Filtros = {
   elementos: {},
@@ -414,14 +430,13 @@ const Filtros = {
       retro: document.getElementById('secao-retro')
     };
 
-    // Adicionar opção de filtro para retrô
     const optRetro = document.createElement('option');
     optRetro.value = 'retro';
     optRetro.textContent = '⏰ Clássicas Retrô';
     this.elementos.categoria.appendChild(optRetro);
 
     this.elementos.busca.addEventListener('input', 
-      Utils.debounce(() => this.aplicar(), 200) // Reduzido de 250 para 200
+      Utils.debounce(() => this.aplicar(), 200)
     );
     this.elementos.categoria.addEventListener('change', () => this.aplicar());
     this.elementos.pais.addEventListener('change', () => this.aplicar());
@@ -435,7 +450,6 @@ const Filtros = {
     const contadores = { pronta: 0, procurada: 0, retro: 0 };
     const cards = document.querySelectorAll('.produto-card');
 
-    // Batch DOM updates
     cards.forEach(card => {
       const match = {
         busca: card.dataset.nome.includes(termo),
@@ -475,36 +489,123 @@ const Filtros = {
 };
 
 // ┌─────────────────────────────────────────────────────────┐
-// │ LIGHTBOX                                                │
+// │ LIGHTBOX - CORRIGIDO COM DEBUG                          │
 // └─────────────────────────────────────────────────────────┘
 const Lightbox = {
   elemento: null,
   imagem: null,
+  nomeAtual: '',
+  touchStartY: 0,
+  touchEndY: 0,
 
   init() {
     this.elemento = document.getElementById('lightbox');
     this.imagem = this.elemento.querySelector('img');
 
+    // Click para fechar
     this.elemento.addEventListener('click', (e) => {
       if (e.target === this.elemento || e.target.classList.contains('lightbox-close')) {
         this.fechar();
       }
     });
 
+    // ESC para fechar
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') this.fechar();
+      if (e.key === 'Escape' && this.elemento.classList.contains('active')) {
+        this.fechar();
+      }
+    });
+
+    // Swipe down para fechar
+    this.elemento.addEventListener('touchstart', (e) => {
+      this.touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    this.elemento.addEventListener('touchend', (e) => {
+      this.touchEndY = e.changedTouches[0].clientY;
+      if (this.touchStartY - this.touchEndY < -100) {
+        this.fechar();
+      }
+    }, { passive: true });
+
+    // Pinch to zoom
+    this.inicializarZoom();
+  },
+
+  inicializarZoom() {
+    let scale = 1;
+    let initialDistance = 0;
+
+    this.imagem.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 2) {
+        e.preventDefault();
+        initialDistance = Math.hypot(
+          e.touches[0].pageX - e.touches[1].pageX,
+          e.touches[0].pageY - e.touches[1].pageY
+        );
+      }
+    }, { passive: false });
+
+    this.imagem.addEventListener('touchmove', (e) => {
+      if (e.touches.length === 2) {
+        e.preventDefault();
+        const currentDistance = Math.hypot(
+          e.touches[0].pageX - e.touches[1].pageX,
+          e.touches[0].pageY - e.touches[1].pageY
+        );
+        scale = Math.max(1, Math.min(3, currentDistance / initialDistance));
+        this.imagem.style.transform = `scale(${scale})`;
+      }
+    }, { passive: false });
+
+    this.imagem.addEventListener('touchend', (e) => {
+      if (e.touches.length === 0) {
+        setTimeout(() => {
+          this.imagem.style.transform = 'scale(1)';
+          scale = 1;
+        }, 200);
+      }
     });
   },
 
-  abrir(src) {
-    this.imagem.src = src;
+  abrir(src, nome) {
+    // ✅ Normaliza o caminho antes de usar
+    const srcNormalizado = Utils.normalizarCaminho(src);
+    
+    console.log('🖼️ Abrindo lightbox:', {
+      original: src,
+      normalizado: srcNormalizado,
+      produto: nome
+    });
+
+    this.nomeAtual = nome;
+    this.imagem.src = srcNormalizado;
+    this.imagem.alt = `${nome} - Clique para fechar`;
+    
+    // ✅ Adiciona tratamento de erro
+    this.imagem.onerror = () => {
+      console.error('❌ Erro ao carregar imagem:', srcNormalizado);
+      Toast.mostrar('⚠️ Erro ao carregar imagem');
+      this.fechar();
+    };
+    
+    this.imagem.onload = () => {
+      console.log('✅ Imagem carregada com sucesso!');
+    };
+    
     this.elemento.classList.add('active');
     document.body.style.overflow = 'hidden';
+    
+    requestAnimationFrame(() => {
+      this.imagem.style.transform = 'scale(1)';
+    });
   },
 
   fechar() {
     this.elemento.classList.remove('active');
     document.body.style.overflow = '';
+    this.imagem.style.transform = 'scale(1)';
+    this.imagem.src = '';
   }
 };
 
@@ -540,7 +641,7 @@ const BotaoTopo = {
     this.elemento = document.getElementById('voltarTopo');
 
     window.addEventListener('scroll', 
-      Utils.throttle(() => this.toggle(), 150), // Otimizado
+      Utils.throttle(() => this.toggle(), 150),
       { passive: true }
     );
 
@@ -585,7 +686,7 @@ const LoadingScreen = {
 };
 
 // ┌─────────────────────────────────────────────────────────┐
-// │ GERENCIADOR DE REDIMENSIONAMENTO (OTIMIZADO)           │
+// │ GERENCIADOR DE REDIMENSIONAMENTO                        │
 // └─────────────────────────────────────────────────────────┘
 const ResizeManager = {
   init() {
@@ -595,7 +696,7 @@ const ResizeManager = {
       clearTimeout(timer);
       timer = setTimeout(() => {
         Object.values(swipers).forEach(swiper => swiper?.update());
-      }, 200); // Reduzido de 250 para 200
+      }, 200);
     }, { passive: true });
   }
 };
@@ -605,13 +706,10 @@ const ResizeManager = {
 // └─────────────────────────────────────────────────────────┘
 const App = {
   init() {
-    // Inicializar renderizador
     Renderizador.init();
     Renderizador.renderizar();
 
-    // Aguardar DOM estar pronto antes de inicializar Swipers
     requestAnimationFrame(() => {
-      // Inicializar Swipers
       swipers.pronta = SwiperConfig.criar(
         '.swiper-pronta',
         '.swiper-pronta .swiper-pagination',
@@ -630,7 +728,6 @@ const App = {
         '.swiper-retro'
       );
 
-      // Inicializar componentes
       Filtros.init();
       Lightbox.init();
       Toast.init();
@@ -638,13 +735,14 @@ const App = {
       LoadingScreen.init();
       ResizeManager.init();
 
-      console.log('🛸 UFO Store V4 carregado com sucesso!');
-      console.log('📊 Produtos carregados:', {
+      console.log('🛸 UFO Store V5.1 Mobile-First carregado!');
+      console.log('📊 Produtos:', {
         'Pronta Entrega': PRODUTOS.prontaEntrega.length,
         'Mais Procuradas': PRODUTOS.maisProcuradas.length,
         'Clássicas Retrô': PRODUTOS.retro.length,
         'Total': PRODUTOS.prontaEntrega.length + PRODUTOS.maisProcuradas.length + PRODUTOS.retro.length
       });
+      console.log('✅ Todos os caminhos de imagem normalizados!');
     });
   }
 };
