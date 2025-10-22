@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════════════════
-// 🛸 UFO STORE - SISTEMA ULTRA OTIMIZADO V5.1 MOBILE-FIRST
+// 🛸 UFO STORE - SISTEMA ULTRA OTIMIZADO V6 MOBILE-FIRST
 // ═══════════════════════════════════════════════════════════
 
 // ┌─────────────────────────────────────────────────────────┐
@@ -17,7 +17,7 @@ const CONFIG = {
 };
 
 // ┌─────────────────────────────────────────────────────────┐
-// │ BASE DE DADOS - PRODUTOS (CAMINHOS CORRIGIDOS!)        │
+// │ BASE DE DADOS - PRODUTOS                                │
 // └─────────────────────────────────────────────────────────┘
 const PRODUTOS = {
   prontaEntrega: [
@@ -122,7 +122,6 @@ const PRODUTOS = {
     }
   ],
 
-  // ✅ CORRIGIDO: Barras invertidas trocadas por barras normais
   retro: [
     {
       nome: 'Brasil 1998',
@@ -216,6 +215,64 @@ const PRODUTOS = {
 };
 
 // ┌─────────────────────────────────────────────────────────┐
+// │ PROTEÇÃO ANTI-ZOOM GLOBAL - ULTRA BLOQUEIO             │
+// └─────────────────────────────────────────────────────────┘
+const AntiZoom = {
+  ultimoToque: 0,
+  metaViewport: null,
+
+  init() {
+    this.metaViewport = document.querySelector('meta[name="viewport"]');
+    
+    // ✅ CRITICAL: Garante viewport bloqueada
+    if (this.metaViewport) {
+      this.metaViewport.setAttribute('content', 
+        'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'
+      );
+    }
+
+    // ✅ Previne gestos iOS/Safari
+    document.addEventListener('gesturestart', (e) => e.preventDefault(), { passive: false });
+    document.addEventListener('gesturechange', (e) => e.preventDefault(), { passive: false });
+    document.addEventListener('gestureend', (e) => e.preventDefault(), { passive: false });
+
+    // ✅ Previne duplo toque para zoom (com debounce agressivo)
+    document.addEventListener('touchend', (e) => {
+      const agora = Date.now();
+      if (agora - this.ultimoToque <= 500) {
+        e.preventDefault();
+      }
+      this.ultimoToque = agora;
+    }, { passive: false });
+
+    // ✅ Previne zoom com Ctrl + Scroll
+    document.addEventListener('wheel', (e) => {
+      if (e.ctrlKey) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    // ✅ Previne zoom com teclado
+    document.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && (e.key === '+' || e.key === '-' || e.key === '=' || e.key === '0')) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    // ✅ Force reset do viewport a cada 2 segundos (extra segurança)
+    setInterval(() => {
+      if (this.metaViewport) {
+        this.metaViewport.setAttribute('content', 
+          'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'
+        );
+      }
+    }, 2000);
+
+    console.log('🔒 Proteção anti-zoom ULTRA ativada');
+  }
+};
+
+// ┌─────────────────────────────────────────────────────────┐
 // │ UTILITÁRIOS                                             │
 // └─────────────────────────────────────────────────────────┘
 const Utils = {
@@ -238,7 +295,6 @@ const Utils = {
     };
   },
 
-  // ✅ Normaliza caminhos para garantir compatibilidade
   normalizarCaminho(caminho) {
     return caminho.replace(/\\/g, '/');
   },
@@ -262,7 +318,6 @@ const ProdutoCard = {
   criar(produto) {
     const badge = this.badges[produto.categoria] || '';
     const whatsappLink = Utils.gerarWhatsAppLink(produto);
-    // ✅ Normaliza o caminho da imagem
     const imagemNormalizada = Utils.normalizarCaminho(produto.imagem);
 
     return `<div class="produto-card" data-nome="${produto.nome.toLowerCase()}" data-categoria="${produto.categoria}" data-pais="${produto.pais}">
@@ -342,53 +397,65 @@ const Renderizador = {
 };
 
 // ┌─────────────────────────────────────────────────────────┐
-// │ SWIPER - CONFIGURAÇÃO OTIMIZADA                         │
+// │ SWIPER - CONFIGURAÇÃO OTIMIZADA MOBILE                  │
 // └─────────────────────────────────────────────────────────┘
 const SwiperConfig = {
   base: {
-    loop: false,
-    speed: 300,
-    slidesPerView: 1.2,
-    spaceBetween: 15,
+    loop: false, // ✅ Desabilita loop para evitar duplicação
+    loopedSlides: 0, // ✅ Zero slides duplicados
+    speed: 400,
+    slidesPerView: 1.8, // ✅ MOBILE: Mostra quase 2 cards
+    spaceBetween: 12,
     centeredSlides: false,
     
     lazy: {
       loadPrevNext: true,
-      loadPrevNextAmount: 1
+      loadPrevNextAmount: 2
     },
     
     pagination: {
       clickable: true,
       dynamicBullets: true,
-      dynamicMainBullets: 2
+      dynamicMainBullets: 3
     },
     
     breakpoints: {
+      400: { 
+        slidesPerView: 2.2, // ✅ Mobile grande: 2+ cards
+        spaceBetween: 12 
+      },
       480: { 
-        slidesPerView: 1.8, 
+        slidesPerView: 2.5, // ✅ Mobile XL: 2.5 cards
         spaceBetween: 15 
       },
       640: { 
-        slidesPerView: 2.2, 
-        spaceBetween: 20 
+        slidesPerView: 2.8, 
+        spaceBetween: 18 
       },
       768: { 
-        slidesPerView: 2.5, 
+        slidesPerView: 3.2, 
         spaceBetween: 20 
       },
       1024: { 
-        slidesPerView: 3.5, 
-        spaceBetween: 25 
+        slidesPerView: 3.8, 
+        spaceBetween: 24 
       },
       1280: { 
-        slidesPerView: 4, 
-        spaceBetween: 30 
+        slidesPerView: 4.2, 
+        spaceBetween: 28 
+      },
+      1536: {
+        slidesPerView: 4.5,
+        spaceBetween: 30
       }
     },
     
     resistanceRatio: 0.85,
     touchRatio: 1,
-    threshold: 5
+    threshold: 5,
+    slideToClickedSlide: false, // ✅ Previne comportamento estranho
+    watchSlidesProgress: true,
+    watchSlidesVisibility: true
   },
 
   criar(selector, paginationSelector, navPrefix) {
@@ -398,7 +465,7 @@ const SwiperConfig = {
         el: paginationSelector,
         clickable: true,
         dynamicBullets: true,
-        dynamicMainBullets: 2
+        dynamicMainBullets: 3
       },
       navigation: {
         prevEl: `${navPrefix} .swiper-button-prev`,
@@ -489,7 +556,7 @@ const Filtros = {
 };
 
 // ┌─────────────────────────────────────────────────────────┐
-// │ LIGHTBOX - CORRIGIDO COM DEBUG                          │
+// │ LIGHTBOX - OTIMIZADO E PROTEGIDO                        │
 // └─────────────────────────────────────────────────────────┘
 const Lightbox = {
   elemento: null,
@@ -497,6 +564,8 @@ const Lightbox = {
   nomeAtual: '',
   touchStartY: 0,
   touchEndY: 0,
+  scale: 1,
+  initialDistance: 0,
 
   init() {
     this.elemento = document.getElementById('lightbox');
@@ -518,28 +587,34 @@ const Lightbox = {
 
     // Swipe down para fechar
     this.elemento.addEventListener('touchstart', (e) => {
-      this.touchStartY = e.touches[0].clientY;
-    }, { passive: true });
-
-    this.elemento.addEventListener('touchend', (e) => {
-      this.touchEndY = e.changedTouches[0].clientY;
-      if (this.touchStartY - this.touchEndY < -100) {
-        this.fechar();
+      if (e.touches.length === 1) {
+        this.touchStartY = e.touches[0].clientY;
       }
     }, { passive: true });
 
-    // Pinch to zoom
+    this.elemento.addEventListener('touchend', (e) => {
+      if (e.changedTouches.length === 1) {
+        this.touchEndY = e.changedTouches[0].clientY;
+        if (this.touchStartY - this.touchEndY < -120) {
+          this.fechar();
+        }
+      }
+    }, { passive: true });
+
+    // ✅ Previne zoom duplo-toque na imagem
+    this.imagem.addEventListener('touchend', (e) => {
+      e.preventDefault();
+    }, { passive: false });
+
+    // Pinch to zoom controlado
     this.inicializarZoom();
   },
 
   inicializarZoom() {
-    let scale = 1;
-    let initialDistance = 0;
-
     this.imagem.addEventListener('touchstart', (e) => {
       if (e.touches.length === 2) {
         e.preventDefault();
-        initialDistance = Math.hypot(
+        this.initialDistance = Math.hypot(
           e.touches[0].pageX - e.touches[1].pageX,
           e.touches[0].pageY - e.touches[1].pageY
         );
@@ -553,59 +628,62 @@ const Lightbox = {
           e.touches[0].pageX - e.touches[1].pageX,
           e.touches[0].pageY - e.touches[1].pageY
         );
-        scale = Math.max(1, Math.min(3, currentDistance / initialDistance));
-        this.imagem.style.transform = `scale(${scale})`;
+        // ✅ Zoom controlado: 1x a 2.5x
+        this.scale = Math.max(1, Math.min(2.5, currentDistance / this.initialDistance));
+        this.imagem.style.transform = `scale(${this.scale})`;
       }
     }, { passive: false });
 
     this.imagem.addEventListener('touchend', (e) => {
-      if (e.touches.length === 0) {
+      if (e.touches.length === 0 && this.scale !== 1) {
         setTimeout(() => {
           this.imagem.style.transform = 'scale(1)';
-          scale = 1;
-        }, 200);
+          this.scale = 1;
+        }, 250);
       }
     });
   },
 
   abrir(src, nome) {
-    // ✅ Normaliza o caminho antes de usar
     const srcNormalizado = Utils.normalizarCaminho(src);
     
-    console.log('🖼️ Abrindo lightbox:', {
-      original: src,
-      normalizado: srcNormalizado,
-      produto: nome
-    });
-
     this.nomeAtual = nome;
     this.imagem.src = srcNormalizado;
     this.imagem.alt = `${nome} - Clique para fechar`;
     
-    // ✅ Adiciona tratamento de erro
     this.imagem.onerror = () => {
       console.error('❌ Erro ao carregar imagem:', srcNormalizado);
       Toast.mostrar('⚠️ Erro ao carregar imagem');
       this.fechar();
     };
     
-    this.imagem.onload = () => {
-      console.log('✅ Imagem carregada com sucesso!');
-    };
-    
     this.elemento.classList.add('active');
     document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.width = '100%';
+    document.body.style.top = `-${window.scrollY}px`;
     
     requestAnimationFrame(() => {
       this.imagem.style.transform = 'scale(1)';
+      this.scale = 1;
     });
   },
 
   fechar() {
+    const scrollY = document.body.style.top;
     this.elemento.classList.remove('active');
     document.body.style.overflow = '';
+    document.body.style.position = '';
+    document.body.style.width = '';
+    document.body.style.top = '';
+    
+    if (scrollY) {
+      window.scrollTo(0, parseInt(scrollY || '0') * -1);
+    }
+    
     this.imagem.style.transform = 'scale(1)';
     this.imagem.src = '';
+    this.scale = 1;
   }
 };
 
@@ -687,6 +765,10 @@ const LoadingScreen = {
 
 // ┌─────────────────────────────────────────────────────────┐
 // │ GERENCIADOR DE REDIMENSIONAMENTO                        │
+// └─────────────────────────────────────────────────────
+
+// ┌─────────────────────────────────────────────────────────┐
+// │ GERENCIADOR DE REDIMENSIONAMENTO                        │
 // └─────────────────────────────────────────────────────────┘
 const ResizeManager = {
   init() {
@@ -746,6 +828,9 @@ const App = {
     });
   }
 };
+
+
+
 
 // ═══════════════════════════════════════════════════════════
 // 🚀 INICIAR APLICAÇÃO

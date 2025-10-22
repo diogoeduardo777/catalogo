@@ -1,6 +1,5 @@
-
 /* ═══════════════════════════════════════════════════════════
-   🛸 UFO STORE - CSS MOBILE-FIRST ULTRA CORRIGIDO V5
+   🛸 UFO STORE - CSS MOBILE-FIRST V6 - ULTRA OTIMIZADO
    ═══════════════════════════════════════════════════════════ */
 
 /* ┌─────────────────────────────────────────────────────────┐
@@ -37,11 +36,12 @@
   --radius-full: 50%;
   
   --max-width-container: 1400px;
-  --max-width-card: 280px;
+  /* ✅ MOBILE: Cards menores para caber mais */
+  --max-width-card: 240px;
 }
 
 /* ┌─────────────────────────────────────────────────────────┐
-   │ RESET GLOBAL - Previne quebra de layout                │
+   │ RESET GLOBAL + PROTEÇÃO ANTI-ZOOM                      │
    └─────────────────────────────────────────────────────────┘ */
 *, *::before, *::after {
   margin: 0;
@@ -52,9 +52,12 @@
 html {
   scroll-behavior: smooth;
   -webkit-tap-highlight-color: transparent;
-  /* CRÍTICO: Previne quebra no zoom */
   min-width: 320px;
   overflow-x: hidden;
+  /* ✅ CRITICAL: Bloqueia zoom em iOS/Safari */
+  touch-action: pan-y;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
 }
 
 body {
@@ -64,11 +67,23 @@ body {
   color: var(--cor-texto);
   min-height: 100vh;
   position: relative;
-  /* CRÍTICO: Previne scroll horizontal */
   overflow-x: hidden;
   width: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* ✅ CRITICAL: Previne zoom no body */
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Permite seleção apenas em textos importantes */
+.produto-nome,
+.produto-descricao,
+.produto-tamanhos,
+.rodape-texto {
+  -webkit-user-select: text;
+  user-select: text;
 }
 
 /* Estrelas de fundo otimizadas */
@@ -343,10 +358,11 @@ body::before {
 }
 
 /* ┌─────────────────────────────────────────────────────────┐
-   │ SWIPER OTIMIZADO MOBILE                                 │
+   │ SWIPER OTIMIZADO MOBILE - MAIS PRODUTOS VISÍVEIS       │
    └─────────────────────────────────────────────────────────┘ */
 .swiper {
-  padding: var(--espacamento-md) 10px 60px 10px !important;
+  /* ✅ Padding menor no mobile para aproveitar espaço */
+  padding: 15px 8px 55px 8px !important;
   overflow: visible;
   width: 100%;
 }
@@ -361,8 +377,8 @@ body::before {
 .swiper-button-prev,
 .swiper-button-next {
   background: rgba(0, 255, 135, 0.2);
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   border-radius: var(--radius-full);
   border: 2px solid var(--cor-primaria);
   transition: all var(--transicao-normal);
@@ -377,18 +393,18 @@ body::before {
 
 .swiper-button-prev::after,
 .swiper-button-next::after {
-  font-size: 18px;
+  font-size: 16px;
   color: var(--cor-primaria);
   font-weight: 900;
 }
 
 .swiper-pagination {
-  bottom: 15px !important;
+  bottom: 10px !important;
 }
 
 .swiper-pagination-bullet {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   background: var(--cor-primaria);
   opacity: 0.5;
   transition: all var(--transicao-normal);
@@ -397,13 +413,13 @@ body::before {
 .swiper-pagination-bullet-active {
   opacity: 1;
   background: var(--cor-secundaria);
-  width: 28px;
+  width: 24px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 255, 135, 0.8);
 }
 
 /* ┌─────────────────────────────────────────────────────────┐
-   │ CARDS DE PRODUTOS - MOBILE FIRST                       │
+   │ CARDS DE PRODUTOS - COMPACTOS NO MOBILE                │
    └─────────────────────────────────────────────────────────┘ */
 .produto-card {
   background: var(--cor-card);
@@ -456,7 +472,7 @@ body::before {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0);
-  font-size: 3rem;
+  font-size: 2.5rem;
   color: white;
   opacity: 0;
   transition: all var(--transicao-normal);
@@ -470,14 +486,14 @@ body::before {
   transform: translate(-50%, -50%) scale(1);
 }
 
-/* Badges */
+/* Badges - Menores no mobile */
 .badge {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  padding: 6px 14px;
+  top: 8px;
+  right: 8px;
+  padding: 5px 12px;
   border-radius: var(--radius-md);
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 800;
   color: #fff;
   z-index: 2;
@@ -501,34 +517,34 @@ body::before {
   box-shadow: 0 0 15px rgba(210, 105, 30, 0.7);
 }
 
-/* Info do produto */
+/* Info do produto - Compacta no mobile */
 .produto-info {
-  padding: var(--espacamento-md);
+  padding: 12px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 }
 
 .produto-nome {
-  font-size: clamp(1rem, 4vw, 1.2rem);
+  font-size: clamp(0.95rem, 4vw, 1.2rem);
   font-weight: 800;
   color: var(--cor-primaria);
-  margin-bottom: var(--espacamento-xs);
-  line-height: 1.3;
+  margin-bottom: 6px;
+  line-height: 1.2;
 }
 
 .produto-descricao {
-  font-size: clamp(0.85rem, 3.5vw, 0.95rem);
+  font-size: clamp(0.8rem, 3.5vw, 0.95rem);
   color: var(--cor-texto-secundario);
-  margin-bottom: var(--espacamento-sm);
-  line-height: 1.5;
+  margin-bottom: 8px;
+  line-height: 1.4;
   flex-grow: 1;
 }
 
 .produto-tamanhos {
-  font-size: clamp(0.8rem, 3vw, 0.9rem);
+  font-size: clamp(0.75rem, 3vw, 0.9rem);
   color: var(--cor-secundaria);
-  margin-bottom: var(--espacamento-md);
+  margin-bottom: 10px;
   font-weight: 600;
 }
 
@@ -536,15 +552,15 @@ body::before {
   margin-top: auto;
 }
 
-/* Botão WhatsApp */
+/* Botão WhatsApp - Compacto no mobile */
 .btn-whatsapp {
-  padding: 14px 20px;
+  padding: 11px 16px;
   background: linear-gradient(135deg, var(--cor-whatsapp), var(--cor-whatsapp-dark));
   color: white;
   text-decoration: none;
   border-radius: var(--radius-lg);
   font-weight: 700;
-  font-size: clamp(0.85rem, 3.5vw, 0.95rem);
+  font-size: clamp(0.8rem, 3.5vw, 0.95rem);
   transition: all var(--transicao-normal);
   box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
   display: block;
@@ -559,13 +575,12 @@ body::before {
 }
 
 /* ┌─────────────────────────────────────────────────────────┐
-   │ LIGHTBOX CORRIGIDO - 100% CENTRALIZADO                 │
+   │ LIGHTBOX - ULTRA PROTEGIDO ANTI-ZOOM                   │
    └─────────────────────────────────────────────────────────┘ */
 .lightbox {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.96);
-  /* CRÍTICO: Flexbox garante centralização */
+  background: rgba(0, 0, 0, 0.97);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -573,10 +588,13 @@ body::before {
   opacity: 0;
   visibility: hidden;
   transition: all var(--transicao-normal);
-  backdrop-filter: blur(8px);
-  padding: var(--espacamento-md);
-  /* Previne scroll no body quando aberto */
+  backdrop-filter: blur(12px);
+  padding: 75px 15px 20px 15px;
   overflow: hidden;
+  /* ✅ CRITICAL: Bloqueia TODOS os gestos de zoom */
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .lightbox.active {
@@ -585,31 +603,35 @@ body::before {
 }
 
 .lightbox img {
-  max-width: 95%;
-  max-height: 90vh;
+  max-width: 90%;
+  max-height: 80vh;
   width: auto;
   height: auto;
   object-fit: contain;
   border-radius: var(--radius-sm);
-  box-shadow: 0 0 40px rgba(0, 255, 135, 0.6);
-  /* CRÍTICO: Garante que a imagem fique sempre centralizada */
+  box-shadow: 0 0 50px rgba(0, 255, 135, 0.7);
   margin: auto;
   display: block;
-  transition: transform 0.2s ease;
-  touch-action: pinch-zoom;
+  transition: transform 0.25s ease;
+  /* ✅ CRITICAL: Previne zoom manual na imagem */
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
 }
 
 .lightbox-close {
   position: absolute;
-  top: var(--espacamento-md);
-  right: var(--espacamento-md);
-  width: 50px;
-  height: 50px;
-  background: rgba(255, 255, 255, 0.1);
+  top: 15px;
+  right: 15px;
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.15);
   border: 3px solid var(--cor-primaria);
   border-radius: var(--radius-full);
   color: var(--cor-primaria);
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 700;
   cursor: pointer;
   transition: all var(--transicao-normal);
@@ -618,12 +640,12 @@ body::before {
   justify-content: center;
   backdrop-filter: blur(15px);
   touch-action: manipulation;
-  z-index: 100000;
+  z-index: 100001;
 }
 
 .lightbox-close:active {
   transform: scale(0.9) rotate(90deg);
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.25);
 }
 
 /* ┌─────────────────────────────────────────────────────────┐
@@ -659,15 +681,15 @@ body::before {
    └─────────────────────────────────────────────────────────┘ */
 .voltar-topo {
   position: fixed;
-  width: 55px;
-  height: 55px;
+  width: 52px;
+  height: 52px;
   bottom: var(--espacamento-md);
   right: var(--espacamento-md);
   background: linear-gradient(135deg, var(--cor-primaria), var(--cor-secundaria));
   color: var(--cor-fundo-escuro);
   border: none;
   border-radius: var(--radius-full);
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 900;
   cursor: pointer;
   box-shadow: 0 6px 20px rgba(0, 255, 135, 0.5);
@@ -1071,6 +1093,51 @@ body::before {
     page-break-inside: avoid;
     border: 1px solid #333;
   }
+}
+/* ┌─────────────────────────────────────────────────────────┐
+   │ LIGHTBOX CORRIGIDO - 100% CENTRALIZADO                 │
+   └─────────────────────────────────────────────────────────┘ */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.96);
+  /* CRÍTICO: Flexbox garante centralização */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transicao-normal);
+  backdrop-filter: blur(8px);
+  padding: 70px var(--espacamento-md) var(--espacamento-md);
+  /* Previne scroll no body quando aberto */
+  overflow: hidden;
+  /* NOVO: Previne zoom na imagem do lightbox */
+  touch-action: none;
+}
+
+.lightbox.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox img {
+  max-width: 92%;
+  max-height: 82vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 0 40px rgba(0, 255, 135, 0.6);
+  /* CRÍTICO: Garante que a imagem fique sempre centralizada */
+  margin: auto;
+  display: block;
+  transition: transform 0.2s ease;
+  /* NOVO: Previne zoom manual na imagem */
+  touch-action: none;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 /* ═══════════════════════════════════════════════════════════
